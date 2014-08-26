@@ -26,7 +26,7 @@ postToChat "$msg"
 
 (( newXpos = ${pos[0]} + xShift ))
 (( newZpos = ${pos[2]} + zShift ))
-height=$(getHeight ${pos[0]} ${pos[2]} )
+height=$(getHeight $newXpos $newZpos )
 
 player_setTilePos $newXpos $height $newZpos
 

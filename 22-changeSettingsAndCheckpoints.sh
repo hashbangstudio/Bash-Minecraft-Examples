@@ -56,7 +56,7 @@ setting 'world_immutable' 0
 sleep 4
 #Follow the player
 sendToChatAndConsole "Set Camera to follow the player"
-camera_setFollow 1
+camera_setFollow
 #wait for 4 seconds 
 sleep 4
 sendToChatAndConsole "Making nametags visible"
@@ -68,7 +68,7 @@ setting 'nametags_visible' 0
 #wait for 4 seconds 
 sleep 4
 sendToChatAndConsole "Set Camera to normal player first person"
-camera_setNormal 1
+camera_setNormal
 
 #wait for 2 seconds 
 sleep 2

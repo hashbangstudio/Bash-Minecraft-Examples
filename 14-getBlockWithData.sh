@@ -41,7 +41,7 @@ echo $msg
 postToChat "$msg" 
 
 #Print block data info
-msg="Block Data: ${blockIdAndData[${BLOCK_ID}]}"
+msg="Block Data: ${blockIdAndData[${BLOCK_DATA}]}"
 # Print to standard output (terminal probably)
 echo $msg
 

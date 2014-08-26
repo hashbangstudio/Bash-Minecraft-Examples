@@ -22,8 +22,6 @@ msg="Creating block at ($blockXpos, $blockYpos, $blockZpos)";
 
 echo $msg
 
-postToChat "$msg"
-
 setBlock $blockXpos $blockYpos $blockZpos ${DIAMOND_BLOCK[${BLOCK_ID}]}
 
 

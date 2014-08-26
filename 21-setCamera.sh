@@ -8,8 +8,14 @@
 
 
 function displayAvailableCameraModes(){
-    echo  "Available camera modes are:"
+    echo "Available camera modes are:"
     echo "normal, follow, fixed"
+}
+
+function printUsage(){
+    echo "Usage : bash script.sh normal [entityId]"
+    echo "Usage : bash script.sh follow [entityId]"
+    echo "Usage : bash script.sh fixed Xcoord Ycoord Zcoord"
 }
 minNumOfParams=1
 if [ $# -ge $minNumOfParams ];
@@ -28,6 +34,8 @@ then
                 camera_setFollow $2
             else
                 echo "expected 1 or 2 arguments but got $#"
+                printUsage
+                exit
             fi
             ;;
         "normal")
@@ -39,6 +47,8 @@ then
                 camera_setNormal $2
             else
                 echo "expected 1 or 2 arguments but got $#"
+                printUsage
+                exit
             fi
             ;;
 
@@ -48,15 +58,20 @@ then
                camera_setFixed $2 $3 $4
             else
                 echo "expected 4 arguments but got $#"
+                printUsage
+                exit
             fi
             ;;
         *)
             echo "unknown camera mode \"$1\" encountered"
             displayAvailableCameraModes
+            printUsage
+            exit
     esac
 else
     echo "insufficient parameters given"
-    echo "Require minimum of $minNumOfParams, got $#\n"
+    echo "Require minimum of $minNumOfParams, got $#"
+    printUsage
     exit 0
 fi
 

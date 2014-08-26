@@ -15,7 +15,7 @@ then
     #Get coordinates as an array
     IFS=", " read -a pos <<< $( player_getTilePos )
     
-    msg="Height is "$( getHeight ${pos[0]} ${pos[2]} )
+    msg="Height of world is "$( getHeight ${pos[0]} ${pos[2]} )" at (${pos[0]}, ${pos[2]})" 
 
     # Print to standard output (terminal probably)
     echo $msg
@@ -30,7 +30,7 @@ then
     #First thing to do is create a connection to the Minecraft world
     connection_create
 
-    msg="Height is "$( getHeight $1 $2 )
+    msg="Height of world is "$( getHeight $1 $2 )" at ($1, $2)" 
 
     # Print to standard output (terminal probably)
     echo $msg

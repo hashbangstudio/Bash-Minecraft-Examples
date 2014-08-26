@@ -28,10 +28,8 @@ do
     do
         (( blockXpos++ ))
         (( blck_id++ ))
-        msg="Creating block at ($blockXpos, $blockYpos, $blockZpos)";
+        msg="Creating block with id = $blck_id at ($blockXpos, $blockYpos, $blockZpos)";
         echo $msg
-        #postToChat "$msg"
-        echo $blck_id
         setBlock $blockXpos $blockYpos $blockZpos $blck_id
     done
 done

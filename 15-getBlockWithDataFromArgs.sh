@@ -7,11 +7,15 @@
 . 'mcpi/block.sh'
 . 'mcpi/blockData.sh'
 
-    
+#First thing to do is create a connection to the Minecraft world
+connection_create
+
 if [ $# -eq 2 ];
 then
 
     height=$( getHeight $1 $2 )
+    #Get the block that would be stood on at this Horiz posn
+    (( height = height - 1 ))
     pos[0]=$1
     pos[1]=$height
     pos[2]=$2
@@ -23,26 +27,16 @@ then
     pos[2]=$3
     
 else
-    echo "expected 2 or 3 arguments but got $#"
+    echo "Expected 2 or 3 arguments but got $#"
+    echo "Usage with 3 args: bash script.sh xcoord ycoord zcoord"
+    echo "Usage with 2 args: bash script.sh xcoord zcoord"
     exit 0
 fi
 
-#First thing to do is create a connection to the Minecraft world
-connection_create
 
-
-#NOTE with getBlockWithData it seems need to do this in two stages
+#NOTE with getBlockWithData it seems to need to do this in two stages
 blockText=$(getBlockWithData ${pos[0]} ${pos[1]} ${pos[2]})
 IFS=", " read -a blockIdAndData <<< $blockText
-
-echo "${blockIdAndData[${BLOCK_ID}]}, ${blockIdAndData[${BLOCK_DATA}]}"
-if [[ ${blockIdAndData[${BLOCK_ID}]} -eq ${AIR[${BLOCK_ID}]} ]]
-then
-     (( pos[1] = pos[1] - 1 ))
-     # Need to do height minus one for this as not flower etc
-     blockText=$( getBlockWithData ${pos[0]} ${pos[1]} ${pos[2]} )
-     IFS=", " read -a blockIdAndData <<< $blockText
-fi
 
 blockName=$(BlockData_getBlockNameFromId ${blockIdAndData[${BLOCK_ID}]} )
 

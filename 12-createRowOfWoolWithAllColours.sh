@@ -21,7 +21,7 @@ IFS=", " read -a pos <<< $( player_getTilePos )
 for (( colour = 0 ; colour <= 15 ; colour++ ))
 do
         (( blockXpos++ ))
-        msg="Creating block at ($blockXpos, $blockYpos, $blockZpos)";
+        msg="Creating block with data $colour at ($blockXpos, $blockYpos, $blockZpos)";
         echo $msg
         #postToChat "$msg"
         setBlock $blockXpos $blockYpos $blockZpos ${WOOL[$BLOCK_ID]} $colour

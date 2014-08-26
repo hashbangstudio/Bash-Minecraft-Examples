@@ -8,7 +8,6 @@
 
 
 function getRandomColouredWoolBlock(){
-    
     #Generate random shift values
     (( blockColour = (($RANDOM % 16)) ))
     echo ${WOOL[$BLOCK_ID]} $blockColour
@@ -37,7 +36,9 @@ do
         msg="Creating block at ($blockXpos, $blockYpos, $blockZpos)";
         echo $msg
         #postToChat "$msg"
-        setBlock $blockXpos $blockYpos $blockZpos $(getRandomColouredWoolBlock)
+        read -a block <<<  $(getRandomColouredWoolBlock)
+        echo "Random Number is ${block[1]}"
+        setBlock $blockXpos $blockYpos $blockZpos ${block[0]} ${block[1]}
     done
 done
 

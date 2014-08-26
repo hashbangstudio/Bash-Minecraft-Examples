@@ -14,6 +14,16 @@ connection_create
 IFS=", " read -a pos <<< $( player_getTilePos )
 height=$( getHeight ${pos[0]} ${pos[2]} )
 
+msg="Height is "$height
+
+# Print to standard output (terminal probably)
+echo $msg
+
+#NOTE need to quote the variable so that does not evaluate the spaces as variable separators
+#Send a command to the Minecraft world
+postToChat "$msg"
+
+
 blockIdNum=$(getBlock ${pos[0]} $height ${pos[2]})
 
 if [ $blockIdNum -eq ${AIR[${BLOCK_ID}]} ]

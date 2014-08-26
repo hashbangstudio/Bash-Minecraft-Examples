@@ -12,18 +12,19 @@ connection_create
 
 while [ 1 ]
 do
-   read -a events <<< $( events_pollBlockHits )
+   IFS="|" read -a events <<< $( events_pollBlockHits )
 
    if [ ${#events[*]} -gt 0 ]
    then
        for e in $events
        do 
-           msg="(Block_Event.HIT, $events)"
+           msg="(Block_Event.HIT, $e)"
        
            # Print to standard output (terminal probably)
            echo $msg
        done
    fi
+   sleep 1
 
 done
 
